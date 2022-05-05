@@ -2,3 +2,58 @@ import flask
 from flask import request
 
 app = flask.Flask(__name__)
+
+task = [
+       {
+           "id": 4,
+           "name":"vash dishes",
+           "describe":"wash and dry dishes",
+           "run to":"12.5",
+           "date of creation":"5.5"
+        }
+]
+
+@app.route('/')
+def index():
+	return 'OK!'
+
+@app.route('/task', methods=['GET'])
+def get_task():
+	return flask.jsonify(task)
+
+@app.route('/task', methods=['POST'])
+def create_task():
+        data = request.json
+        if 'id' in data and 'name' in data and 'describe' in data and 'run to' in data and 'date of creation' in data:
+            name = data['name']
+            if len(list(filter(lambda x: x['name'] == name, task))) != 0:
+                return flask.jsonify({
+                    'code': 2,
+                    'message': 'Пользователь уже есть в системе'
+                })
+            task.append(data)
+            return flask.jsonify({
+                'code': 0,
+                'message': 'Task created'
+            })
+        return flask.jsonify({
+            'code': 1,
+            'message': 'У пользователя есть обязательные поля: name, describe , run to, date of creation '
+        })
+
+@app.route('/task/<int:id>', methods=['DELETE'])
+def delete_task(id: int):
+	global task
+	index_for_delete = None
+	for idx, user in enumerate(task):
+		if user['id'] == id:
+			index_for_delete = idx
+			break
+	if index_for_delete is not None:
+		del task[index_for_delete]
+		return 'Успешно удалено'
+	else:
+		return '<p style="color:red;">Task not found</p>'
+
+if __name__ == '__main__':
+  app.run('localhost', 7000)
