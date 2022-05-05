@@ -1,11 +1,8 @@
-
-lst = []
-a = input('ведите слово')
-lst.append(a)
-dictinory = {
-        a: a
-}
+def to_dict(list):
+    return {element: element for element in list}
 
 
-print(dictinory)
-print(lst)
+lst = [1]
+
+print(to_dict(lst))
+
