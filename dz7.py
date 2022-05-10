@@ -39,16 +39,16 @@ def get_users():
 
 @app.route('/users', methods=['POST'])
 def create_user():
-        data = request.json
-        if 'id' in data and 'name' in data and 'Surname' in data and 'email' in data and 'password' in data:
-            email = data['email']
-            if len(list(filter(lambda x: x['email'] == email, users))) != 0:
-                return flask.jsonify({
+    data = request.json
+    if 'id' in data and 'name' in data and 'Surname' in data and 'email' in data and 'password' in data:
+        email = data['email']
+        if len(list(filter(lambda x: x['email'] == email, users))) != 0:
+            return flask.jsonify({
                     'code': 2,
                     'message': 'Пользователь уже есть в системе'
                 })
-            users.append(data)
-            return flask.jsonify({
+        users.append(data)
+        return flask.jsonify({
                 'code': 0,
                 'message': 'User created'
             })

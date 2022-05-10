@@ -3,15 +3,7 @@ from flask import request
 
 app = flask.Flask(__name__)
 
-task = [
-       {
-           "id": 4,
-           "name":"vash dishes",
-           "describe":"wash and dry dishes",
-           "run to":"12.5",
-           "date of creation":"5.5"
-        }
-]
+task = []
 
 @app.route('/')
 def index():
@@ -29,7 +21,7 @@ def create_task():
             if len(list(filter(lambda x: x['name'] == name, task))) != 0:
                 return flask.jsonify({
                     'code': 2,
-                    'message': 'Пользователь уже есть в системе'
+                    'message': 'задание уже есть в системе'
                 })
             task.append(data)
             return flask.jsonify({
@@ -38,7 +30,26 @@ def create_task():
             })
         return flask.jsonify({
             'code': 1,
-            'message': 'У пользователя есть обязательные поля: name, describe , run to, date of creation '
+            'message': 'У задания есть обязательные поля: name, describe , run to, date of creation '
+        })
+@app.route('/task/<int:task_id>', methods=['PUT'])
+def update_task(task_id: int):
+    global task
+    data = request.json
+    if len(task) >= task_id:
+        if 'name' in data and 'describe' in data and 'run to' in data and 'date of creation' in data:
+            task[task_id - 1] = data
+            return flask.jsonify({
+                'code': 0,
+                'message': 'Task updated!'
+            })
+        return flask.jsonify({
+            'code': 1,
+            'message': 'У задания есть обязательные поля: name, describe , run to, date of creation '
+        })
+    return flask.jsonify({
+        'code': 3,
+        'message': 'Task not found!'
         })
 
 @app.route('/task/<int:id>', methods=['DELETE'])
@@ -56,4 +67,4 @@ def delete_task(id: int):
 		return '<p style="color:red;">Task not found</p>'
 
 if __name__ == '__main__':
-  app.run('localhost', 7000)
+    app.run('localhost', 7000)
