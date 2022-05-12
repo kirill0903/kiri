@@ -32,6 +32,22 @@ def create_task():
             'code': 1,
             'message': 'У задания есть обязательные поля: name, describe , run to, date of creation '
         })
+
+@app.route('/task/<int:id>', methods=['DELETE'])
+def delete_task(id: int):
+	global task
+	index_for_delete = None
+	for idx, user in enumerate(task):
+		if user['id'] == id:
+			index_for_delete = idx
+			break
+	if index_for_delete is not None:
+		del task[index_for_delete]
+		return 'Успешно удалено'
+	else:
+		return '<p style="color:red;">Task not found</p>'
+
+
 @app.route('/task/<int:task_id>', methods=['PUT'])
 def update_task(task_id: int):
     global task
@@ -52,19 +68,8 @@ def update_task(task_id: int):
         'message': 'Task not found!'
         })
 
-@app.route('/task/<int:id>', methods=['DELETE'])
-def delete_task(id: int):
-	global task
-	index_for_delete = None
-	for idx, user in enumerate(task):
-		if user['id'] == id:
-			index_for_delete = idx
-			break
-	if index_for_delete is not None:
-		del task[index_for_delete]
-		return 'Успешно удалено'
-	else:
-		return '<p style="color:red;">Task not found</p>'
+str = task
+l = len(task)
+print(l)
 
-if __name__ == '__main__':
-    app.run('localhost', 7000)
+app.run('localhost', 7000)
