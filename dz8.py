@@ -68,8 +68,6 @@ def update_task(task_id: int):
         'message': 'Task not found!'
         })
 
-str = task
-l = len(task)
-print(l)
 
-app.run('localhost', 7000)
+if __name__ == '__main__':
+  app.run('localhost', 6000)
