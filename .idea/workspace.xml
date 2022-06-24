@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b166f1c3-bb3a-4185-bac7-1e0a11859df3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/classwork.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dz8.py" beforeDir="false" afterPath="$PROJECT_DIR$/dz8.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/todo/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo/task/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/todo/task/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo/task/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/todo/task/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

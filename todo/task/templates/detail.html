@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <style>
+        body {
+            margin: 0;
+        }
+        header, footer {
+            background-color: grey;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 40px;
+        }
+        #content {
+            margin: 0px 10px;
+        }
+        .task {
+            border: 1px solid grey;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    ToDo
+</header>
+
+<div id="content">
+
+        <h2>{{ task.title }}</h2>
+        <p>{{ task.description }}</p>
+        <p>Status: {{ task.status }}</p>
+        <p>Created at: {{ task.created_at }}</p>
+</div>
+
+<footer>
+    This is a footer
+</footer>
+
+</body>
+</html>

@@ -20,6 +20,19 @@ class Task(models.Model):
 	updated_at = models.DateTimeField(auto_now=True)  # Дата и время которая задается автоматически при изменении записи
 	created_at = models.DateTimeField(auto_now_add=True)  # Дата и время которая задается автоматически при создании записи
 
-    def __str__(self):
+	def __str__(self):
+		return f'{self.id} {self.title}'
 
 
+class Rating(models.Model):
+	id = models.AutoField(primary_key=True)
+	user_name = models.CharField(max_length=255)
+	point = models.PositiveIntegerField()
+	created_at = models.DateTimeField(auto_now_add=True)
+
+
+class Comment(models.Model):
+	id = models.AutoField(primary_key=True)
+	text = models.TextField(max_length=200)
+	updated_at = models.DateTimeField(auto_now=True)
+	created_at = models.DateTimeField(auto_now_add=True)
